@@ -1,0 +1,75 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Crop Data</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+
+<div class="upload-form">
+    <img class="globeclass" src="{{ url_for('static', filename='globe.png') }}">
+    <h2>Upload Your Crop Data</h2><br>
+
+<!-- <form action="/predict" method="POST" enctype="multipart/form-data">
+        <label for="cropFile">Choose a file:</label>
+        <input type="file" id="cropFile" name="cropFile" required><br><br>
+        <input class="uploadbtn" type="submit" value="Upload"><br>
+        <h3>{{ prediction_text }}</h3>
+    </form>  -->
+<!-- <form action="/predict" method="POST" enctype="multipart/form-data">
+        <label for="file">Choose a file:</label>
+        <input type="file" name="cropFile" accept=".pdf, .csv" required>
+        <button type="submit">Upload</button>
+    </form>
+    {% if prediction_text %}
+    <h2>{{ prediction_text }}</h2>
+    {% endif %}
+</div>
+
+<div class="downloadclass">
+    <a href="https://drive.google.com/file/d/1vALmZHez0gnbuw8ilHiu3gQzruvgVsIF/view?usp=drive_link" class="download-button" download>Download Sample Report</a>
+</div>
+
+
+</body>
+</html> --> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Crop Data</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+
+<div class="upload-form">
+    <img class="globeclass" src="{{ url_for('static', filename='globe.png') }}" alt="Globe Image">
+    <h2>Upload Your Crop Data</h2><br>
+
+    <!-- Form to Upload File -->
+    <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+        <label for="file">Choose a file:</label>
+        <input type="file" name="cropFile" accept=".pdf, .csv" required><br><br>
+        <button class="uploadbtn" type="submit">Upload</button>
+    </form>
+
+    <!-- Display Prediction Result if Available -->
+    {% if prediction_text %}
+        <h2>{{ prediction_text }}</h2>
+    {% endif %}
+</div>
+
+<!-- Download Section -->
+<div class="downloadclass">
+    <a href="https://drive.google.com/file/d/1vALmZHez0gnbuw8ilHiu3gQzruvgVsIF/view?usp=drive_link" 
+       class="download-button" target="_blank" rel="noopener noreferrer">
+       Download Sample Report
+    </a>
+</div>
+
+</body>
+</html>

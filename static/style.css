@@ -1,0 +1,91 @@
+* {
+    text-decoration: none;
+}
+
+.navbar {
+    background: green;
+    font-family: calibri;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 25px;
+}
+
+.navdiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.logo {
+    font-size: 30px;
+    font-weight: 600;
+    font-family: abadi;
+    color: white;
+    padding-top: 15px;
+}
+
+li {
+    list-style: none;
+    display: inline;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+li :hover{
+    color:black;
+ }
+li a {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 25px;
+}
+
+.pic1 {  
+    position: relative;
+    height: 800px;
+    width: 1455px;
+}
+
+.pictext1 {
+    position: absolute;
+    top: 80%;
+    right: 70px;
+    transition: transform 2s ease, opacity 2s ease;
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+.pictext1.show {
+    transform: translateY(0); 
+    opacity: 1; 
+}
+
+.pictext1 h4 {
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ccc;
+}
+
+.paradiv1{
+    position: absolute;
+    top: 40%;
+    left: 70px;
+    width: 500px;
+    transition: transform 2s ease, opacity 2s ease;
+    transform: translateY(20px);
+    opacity: 0;
+}
+.paradiv1.show {
+    transform: translateY(0); 
+    opacity: 1; 
+}
+
+.paratext1{
+    font-size:30px;
+    line-height: 1.5;
+    color: white; 
+}
+

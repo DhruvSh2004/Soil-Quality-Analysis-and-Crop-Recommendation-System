@@ -5,14 +5,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from sklearn.preprocessing import MinMaxScaler
 
-#Loading the data
 crop_data = pd.read_csv('Crop_recommendation.csv')
-#print(crop_data.head())
 crop_data.info()
-#Checking for any missing values
 print(crop_data.isnull().sum())
 
-#Preprocessing the data
 #Feature Scaling (Normalizing N, K, P, temp, humidity, PH, rainfall) so that all value lies between 0 and 1
 scaler = MinMaxScaler()
 scaled_features = scaler.fit_transform(crop_data.drop('label', axis = 1))
@@ -44,21 +40,7 @@ print(confusion_matrix(Y_test, Y_pred))
 print("Classification Report : ")
 print(classification_report(Y_test, Y_pred))
 
-#Extra part
-# Function to predict crop based on user inputs
-def predict_crop(N, P, K, temperature, humidity, pH, rainfall):
-    # Scale the input features using the same scaler
-    input_features = scaler.transform([[N, P, K, temperature, humidity, pH, rainfall]])
-
-    # Predict the crop
-    prediction = RF_model.predict(input_features)
-    return prediction[0]
-
-# Test the prediction function
-print("Recommended Crop:", predict_crop(90, 42, 43, 20.87974371, 82.00274423, 6.502985292, 202.9355362))
-
 import pickle
-
 # Save the trained model to a file
 with open("rf_model.pkl", "wb") as model_file:
     pickle.dump(RF_model, model_file)

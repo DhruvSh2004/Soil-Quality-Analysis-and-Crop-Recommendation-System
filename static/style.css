@@ -89,3 +89,215 @@ li a {
     color: white; 
 }
 
+ /* * {
+    text-decoration: none;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 1415px; 
+    background-color: #006400;
+    color: white;
+    padding: 10px 20px;
+    z-index: 1000;  
+}
+.navdiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 600;
+    font-family: abadi;
+    color: white;
+    padding-top: 15px;
+}
+
+li {
+    list-style: none;
+    display: inline;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+li :hover{
+    color:black;
+ }
+li a {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 25px;
+}
+html {
+    scroll-behavior: smooth; 
+}
+.pic1 {
+    position: relative;
+    height: 600px; 
+    width: 100%;
+}
+.pictext1 {
+    position: absolute;
+    top: 60%;
+    right: 70px;
+    transition: transform 2s ease, opacity 2s ease;
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+.pictext1.show {
+    transform: translateY(0); 
+    opacity: 1; 
+}
+
+.pictext1 h4 {
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ccc;
+}
+
+.paradiv1{
+    position: absolute;
+    top: 30%;
+    left: 70px;
+    width: 700px;
+    transition: transform 2s ease, opacity 2s ease;
+    transform: translateY(20px);
+    opacity: 0;
+}
+.paradiv1.show {
+    transform: translateY(0); 
+    opacity: 1; 
+}
+
+.paratext1{
+    font-size:30px;
+    line-height: 1.5;
+    color: white; 
+}
+
+.pic1 {  
+    position: relative;
+    height: 800px;
+    width: 1455px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 20px;
+}
+button {
+    background-color: #34a203;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #004d40;
+}
+
+
+.panel {
+    display: none;
+    padding: 15px;
+    background-color: #f1f1f1;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.upload-form {
+    text-align: center; 
+    padding: 40px;
+    background-color: #ffffff; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.upload-form {
+    text-align: center; 
+    padding: 40px;
+
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.globeclass {
+    height: 50px;
+    width: 50px;
+    display: block;
+    margin: 0 auto 20px; 
+}
+
+h2 {
+    font-size: 32px;
+    color: #00796b; 
+    margin-bottom: 30px;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00796b;
+    color: white;
+    font-size: 17px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    height: 20px;
+    width: 200px;
+}
+
+.custom-file-upload:hover {
+    background-color: #004d40;
+}
+
+.upload-form input[type="file"] {
+    display: none;
+}
+
+.uploadbtn {
+    font-size:15px;
+    height: 40px;
+    width: 200px;
+    background-color: #ff9800;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.uploadbtn:hover {
+    background-color: #f57c00;
+} */

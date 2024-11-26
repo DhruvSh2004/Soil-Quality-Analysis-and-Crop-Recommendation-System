@@ -4,20 +4,16 @@ import numpy as np
 import os
 import pandas as pd
 
-# Initialize the Flask app
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'uploads/'  # Folder where files will be uploaded
-app.secret_key = 'supersecretkey'  # For flashing messages
+app.config['UPLOAD_FOLDER'] = 'uploads/'  
+app.secret_key = 'supersecretkey'  
 
-# Ensure the 'uploads' folder exists
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 
-# Load the model and scaler
 rf_model = pickle.load(open("rf_model.pkl", "rb"))
 scaler = pickle.load(open("scaler.pkl", "rb"))
 
-# Fertilizer recommendation based on crop type
 def get_fertilizer_recommendation(crop_type):
     if crop_type == 'maize':
         return 'Urea'
@@ -76,62 +72,64 @@ def get_fertilizer_recommendation(crop_type):
 @app.route('/')
 def home():
     """Render the home page."""
-    return render_template('home.html')
+    return render_template('index1.html')
 
 def generate_sustainability_recommendation(data):
     """Provide sustainability recommendations based on soil data."""
     recommendations = []
-    # Example logic based on nutrient levels in the data
-    if data[0] < 50:  # Assume data[0] represents nitrogen levels
+    if data[0] < 50:  
         recommendations.append("Consider adding nitrogen-rich fertilizers.")
-    if data[1] < 30:  # Assume data[1] represents phosphate levels
+    if data[1] < 30:  
         recommendations.append("Phosphate levels are low, consider phosphate supplementation.")
-    if data[2] < 20:  # Assume data[2] represents potash levels
+    if data[2] < 20:  
         recommendations.append("Potash levels are below optimal levels. Add potash-rich manure.")
     
     return " ".join(recommendations) if recommendations else "Soil is in good condition. No major interventions needed."
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
     """Handle both form inputs and file uploads for prediction."""
     if 'cropFile' in request.files:
-        # Handle file upload
+
         file = request.files['cropFile']
 
         if file.filename == '':
             flash('No file selected. Please upload a file.')
             return redirect(request.url)
 
-        # Save the uploaded file
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(filepath)
 
         try:
-            # Read the CSV file into a DataFrame
             data = pd.read_csv(filepath)
 
-            # Assume the CSV contains the necessary features
             scaled_data = scaler.transform(data)
 
-            # Predict using the model for all rows in the CSV
-            predictions = rf_model.predict(scaled_data)
+            predictions = rf_model.predict_proba(scaled_data)
 
-            # Prepare a result string with predictions and recommendations
             result = ""
-            for i, pred in enumerate(predictions):
-                crop_type = pred  # Assuming the model predicts a crop type
-                fertilizer_recommendation = get_fertilizer_recommendation(crop_type)
-                recommendation = generate_sustainability_recommendation(data.iloc[i].tolist())
-                result += f'Recommended Crop: {pred} Fertilizer Recommendation: {fertilizer_recommendation} Sustainability Recommendation: {recommendation}'
+            for i, prediction in enumerate(predictions):
+                # Get top 3 crops with highest probability
+                top_crops_indices = prediction.argsort()[-3:][::-1]  # Get indices of top 3 crops
+                top_crops = [rf_model.classes_[index] for index in top_crops_indices]
+
+                # Generate recommendations for each crop
+                for crop_type in top_crops:
+                    fertilizer_recommendation = get_fertilizer_recommendation(crop_type)
+                    sustainability_recommendation = generate_sustainability_recommendation(data.iloc[i].tolist())
+
+                    result += f'Recommended Crop: {crop_type}<br>'
+                    result += f'Fertilizer Recommendation: {fertilizer_recommendation}<br>'
+                    result += f'Sustainability Recommendation: {sustainability_recommendation}<br><br>'  # Adds a line break between each crop
 
         except Exception as e:
             flash(f'Error processing the file: {str(e)}')
-            return redirect(url_for('home'))
+            return redirect(url_for('index1'))
 
-        return render_template('home.html', prediction_text=result)
+        return render_template('index1.html', prediction_text=result)
 
     else:
-        # Handle form input if no file is uploaded
         try:
             inputs = [float(x) for x in request.form.values()]
 
@@ -139,24 +137,26 @@ def predict():
                 flash('Please provide all input values.')
                 return redirect(request.url)
 
-            # Scale the input features
             scaled_input = scaler.transform([inputs])
 
-            # Predict the crop
-            prediction = rf_model.predict(scaled_input)
-            crop_type = prediction[0]
+            # Predict the top 3 crops
+            predictions = rf_model.predict(scaled_input)[:3]  # Get top 3 predictions
 
-            # Generate fertilizer recommendation
-            fertilizer_recommendation = get_fertilizer_recommendation(crop_type)
+            # Generate fertilizer and sustainability recommendations
+            result = ""
+            for crop_type in predictions:
+                fertilizer_recommendation = get_fertilizer_recommendation(crop_type)
+                sustainability_recommendation = generate_sustainability_recommendation(inputs)
 
-            # Generate sustainability recommendation based on inputs
-            sustainability_recommendation = generate_sustainability_recommendation(inputs)
+                result += f'Recommended Crop: {crop_type}<br>'
+                result += f'Fertilizer Recommendation: {fertilizer_recommendation}<br>'
+                result += f'Sustainability Recommendation: {sustainability_recommendation}<br><br>'  # Adds a line break between each crop
 
-            return render_template('home.html', prediction_text=f'Recommended Crop: {crop_type}', prediction_text2=f'Fertilizer Recommendation: {fertilizer_recommendation}', prediction_text3= f'Sustainability Recommendation: {sustainability_recommendation}')
+            return render_template('index1.html', prediction_text=result)
 
         except Exception as e:
             flash(f'Error processing the input: {str(e)}')
-            return redirect(url_for('home'))
+            return redirect(url_for('index1'))
 
 # Run the Flask app
 if __name__ == "__main__":

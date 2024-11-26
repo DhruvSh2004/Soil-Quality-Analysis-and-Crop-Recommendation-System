@@ -1,220 +1,11 @@
- body {
-    font-family: Arial, sans-serif;
-    background-color: white ; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
-    margin: 0;
-}
-
-
-.globeclass {
-    height: 50px; 
-    width: 50px; 
-    display: block; 
-    margin: 0 auto; 
-}
-
-.upload-form {
-    margin: 20px;
-    padding: 30px; 
-    border: 2px solid #00796b; 
-    height:500px;
-
-    width: 500px; 
-    background-color: #ffffff; 
-    
-}
-
-h2 {
-    text-align: center;
-    color: #00796b; 
-    font-size: 28px; 
-}
-
-label {
-    display: block;
-    margin-bottom: 15px; 
-    font-weight: bold;
-    font-size: 16px; 
-}
-
-.upload-form input[type="file"] {
-    display: flex;
-    margin: 15px 0; 
-    width: 100%; 
-    padding: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    font-size: 16px; 
-}
-#cropFile{
-    width:450px;
-    margin-right: 70px; 
-    margin-bottom: 20px;
-}
-.uploadbtn{
-    height:50px;
-    width:100px;
-    background-color: #66bb6a;
-    border-radius: 6px;
-    border:white;
-    justify-content:center;
-    
-}
-
-.uploadbtn:hover {
-    background-color: #4caf50;
-}
-
-.downloadclass{
-    
-    position: absolute; 
-   right: 20px; 
-   top: 20px; 
-}
-
-.download-button {
-   display: inline-block;
-   padding: 15px 30px;
-   background-color: #4CAF50;
-   color: white;
-   text-decoration: none;
-   border-radius: 5px;
-   font-size: 18px;
-   transition: background-color 0.3s ease;
-
-}
-.download-button:hover {
-   background-color: #45a049;
-} */
-/* 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #d7e1ec, #f0f4f8); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.container {
-    max-width: 700px;
-    margin: 20px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-}
-
-.globeclass {
-    height: 80px;
-    width: 80px;
-    display: block;
-    margin: 0 auto 20px auto;
-}
-
-.upload-form {
-    text-align: center;
-}
-
-h2 {
-    color: #00796b;
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-p.description {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin: 15px 0 5px;
-    font-weight: bold;
-    font-size: 16px;
-    color: #333;
-}
-
-.upload-form input[type="file"] {
-    display: block;
-    margin: 10px auto;
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.uploadbtn {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #66bb6a;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.uploadbtn:hover {
-    background-color: #4caf50;
-}
-
-.result-section {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #e8f5e9;
-    border-radius: 5px;
-    border: 1px solid #c8e6c9;
-}
-
-.result-section h3 {
-    margin: 0 0 10px;
-    color: #2e7d32;
-}
-
-.result-section p {
-    margin: 0;
-    font-size: 16px;
-}
-
-.downloadclass {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.download-button {
-    display: inline-block;
-    padding: 12px 20px;
-    background-color: #4caf50;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.download-button:hover {
-    background-color: #388e3c;
-}
-
-
 .grid-container {
     display: grid;
-
     gap: 20px;   
     padding: 20px;
     justify-items: center;  
     align-items: start;  
-    max-width: 1200px;  
-    margin: 0 auto;  
+    max-width: 1200px; 
+    margin: 0 auto; 
 }
 .accordion {
     background-color: #00796b;
@@ -237,12 +28,9 @@ label {
     background-color: #f1f1f1;
     margin-top: 10px;
     border-radius: 5px;
-    max-height: 0;            
-    
-    overflow: hidden;         
-    
-    transition: max-height 0.3s ease-out; 
-    
+    max-height: 0;           
+    overflow: hidden;        
+    transition: max-height 0.3s ease-out;
 }
 
 
@@ -291,4 +79,4 @@ label {
     bottom: 60px;
     height: 200px;
     width: 200px;
-}*/
+}

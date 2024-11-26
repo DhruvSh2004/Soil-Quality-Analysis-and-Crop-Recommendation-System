@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropSense</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo">CropSense</div>
+            <ul class="nav-links">
+                <li class="reclinks"><a href="#services">Recommendations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <img class="pic1" src="{{ url_for('static', filename='scenery.png') }}" alt="Scenery">
+    <div class="paradiv1 fade-in">
+        <p class="paratext1">
+            <b>Soil Analysis and Crop Recommendation System</b> leverages advanced data analytics and environmental factors to help farmers optimize crop yields while maintaining sustainable farming practices. The system takes into account various key parameters such as soil health, climate conditions, and weather patterns to recommend the most suitable crops for a particular farm.
+        </p>
+    </div>    
+    
+    <div class="pictext1">
+        <h4>Welcome!</h4>
+    </div>
+   <h1>Soil Quality Analysis and Crop Recommendation System</h1>
+    <div class="grid-container">
+        <div class="grid-cc">
+            <button class="accordion">Crop Recommendation System</button>
+            <div class="panel">
+                <p>The Crop Recommendation System analyzes various factors such as soil health, weather patterns, and environmental conditions to suggest the most suitable crops for your farm. The system takes into account climate conditions, soil texture, and nutrient availability.</p>
+            </div>
+        </div>
+        <div>
+            <button class="accordion">Fertilizer Recommendation</button>
+            <div class="panel">
+                <p>This feature evaluates the nutrient profile of the soil and suggests the most appropriate fertilizer to improve soil fertility. This feature helps support healthy plant growth.</p>
+            </div>
+        </div>
+        <div>
+            <button class="accordion">Sustainability Recommendation</button>
+            <div class="panel">
+                <p>Focuses on ensuring long-term soil health and reducing environmental impact. It uses data on nutrient levels to suggest sustainable farming practices that will maintain soil fertility while minimizing the use of chemical inputs.</p>
+            </div>
+        </div>
+    </div>
+    <div class="upload-form">
+        <form id="uploadForm" action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+            <img class="globeclass" src="{{ url_for('static', filename='globe.png') }}" alt="Globe Icon">
+            <h2>CropSense</h2><br>
+            <label for="cropFile" class="custom-file-upload">
+                Choose File
+            </label>
+            <input type="file" id="cropFile" name="cropFile" accept=".pdf, .csv" required onchange="updateFileName()">
+            <span id="file-name">No file chosen</span><br><br>
+            <input class="uploadbtn" type="submit" value="Upload">
+        </form>
+        
+        {% if prediction_text %}
+        <div>
+            <h2>Predictions:</h2>
+            <p>{{ prediction_text|safe }}</p>  
+        </div>
+        {% endif %}
+    </div>
+    <div class="downloadclass">
+        <a href="" 
+           class="download-button" target="_blank" rel="noopener noreferrer">
+           Download Sample Report
+        </a>
+    </div>
+
+    <div class="animgif_div">
+        <img src="{{ url_for('static', filename='Farmer with vegetables.gif') }}" class="bttm_img" alt="Farmer with vegetables">
+    </div>
+</body>
+</html>

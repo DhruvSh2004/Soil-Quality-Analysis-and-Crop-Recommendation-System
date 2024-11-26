@@ -9,35 +9,35 @@ crop_data = pd.read_csv('Crop_recommendation.csv')
 crop_data.info()
 print(crop_data.isnull().sum())
 
-#Feature Scaling (Normalizing N, K, P, temp, humidity, PH, rainfall) so that all value lies between 0 and 1
+# Feature Scaling (Normalizing N, K, P, temp, humidity, PH, rainfall) so that all values lie between 0 and 1
 scaler = MinMaxScaler()
-scaled_features = scaler.fit_transform(crop_data.drop('label', axis = 1))
+scaled_features = scaler.fit_transform(crop_data.drop('label', axis=1))
 
-#Creating a new DataFrame to store this scaled data
-scaled_data = pd.DataFrame(scaled_features, columns = crop_data.columns[:-1])
+# Creating a new DataFrame to store this scaled data
+scaled_data = pd.DataFrame(scaled_features, columns=crop_data.columns[:-1])
 scaled_data['Label'] = crop_data['label']
 
-#Splitting the Dataset into training and testing sets
-X = scaled_data.drop('Label', axis = 1)
+# Splitting the Dataset into training and testing sets
+X = scaled_data.drop('Label', axis=1)
 Y = scaled_data['Label']
 
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size  = 0.7, random_state = 42)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.7, random_state=42)
 
-#Building the Random Forest Model
-RF_model = RandomForestClassifier(n_estimators = 100, random_state = 42)
+# Building the Random Forest Model
+RF_model = RandomForestClassifier(n_estimators=100, random_state=42)
 RF_model.fit(X_train, Y_train)
 
-#Predicting on the test Data
+# Predicting on the test Data
 Y_pred = RF_model.predict(X_test)
 
-#Evaluating the model
+# Evaluating the model
 accuracy = accuracy_score(Y_test, Y_pred)
-print(f'Accuracy : {accuracy * 100:.2f}%')
+print(f'Accuracy: {accuracy * 100:.2f}%')
 
-print("Confusion Matrix : ")
+print("Confusion Matrix:")
 print(confusion_matrix(Y_test, Y_pred))
 
-print("Classification Report : ")
+print("Classification Report:")
 print(classification_report(Y_test, Y_pred))
 
 import pickle
